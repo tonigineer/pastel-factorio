@@ -56,7 +56,7 @@ brash_ice        = "#A3B8E3"   # Aquilo brash ice
 # toward its own color, `lighten` of the way to white) by `strength`:
 # 0 = vanilla, 1 = fully the new color.
 [liquids]
-lava = { color = "$lava", strength = 0.75 }
+lava = { color = "$lava", strength = 0.05 }
 oil = { color = "$oil_ocean", strength = 0.5 }
 wetland = { lighten = 0.4, strength = 1.0 }
 ammonia = { color = "$ammonia", strength = 0.75 }

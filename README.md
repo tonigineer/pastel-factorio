@@ -2,11 +2,15 @@
 
 A Factorio 2.1 mod that repaints the world in bright, soft pastel colors.
 
-A main menu scene from each planet, recorded with the mod:
+Main menu scenes from every planet, recorded with the mod:
 
 **Nauvis**: Lab
 
 <!-- video: media/videos/nauvis-lab.mp4 -->
+
+**Nauvis**: Logistic robots
+
+<!-- video: media/videos/nauvis-logistic-robots.mp4 -->
 
 **Vulcanus**: Punishment
 

@@ -370,22 +370,22 @@ muted = { below = 0.05, above = 0.1, blur = 0.75, lift = { floor = 0.18, ceil = 
 # ------------------------------------------------------------------ planets
 # The other planets keep their identity, just lighter and softer. Each
 # planet's group uses its *.ground category for everything without a rule.
-[categories."vulcanus.ground"]    # basalt and ash: warm taupe-mauve; hot cracks glow peach-coral
+[categories."vulcanus.ground"]    # basalt and ash: nearly vanilla, with a soft lavender tint on the pumice
 type = "remap"
-strength = 0.75
-lift = { floor = 0.4, ceil = 0.93, gamma = 0.85 }
-detail = { sigma = 2.0, gain = 1.15 }
+strength = 0.1                # low: a stronger lift turns the ground into a foggy haze
+lift = { floor = 0.2, ceil = 0.93, gamma = 0.7 }
+detail = { sigma = 2.0, gain = 1.5 }
 neutral = { chroma_below = 0.05, hue = 20, chroma = 0.028 }
 shade = { hue = 320, below = 0.3, strength = 0.6, chroma = 0.03 }
-chroma = { scale = 0.9, add = 0.005, max = 0.15 }
+chroma = { scale = 1.4, add = 0.005, max = 0.2 }
 
-[categories."vulcanus.lava"]      # the lava's own picture: soft coral glow, plum-mauve crust
+[categories."vulcanus.lava"]      # the lava's own picture: kept close to the vanilla glow
 type = "remap"
-strength = 0.8
-lift = { floor = 0.35, ceil = 0.97, gamma = 0.85 }
+strength = 0.05
+lift = { floor = 0.3, ceil = 0.97, gamma = 0.85 }
 hue_anchors = [[50, 35]]
 neutral = { chroma_below = 0.04, hue = 330, chroma = 0.03 }
-chroma = { scale = 0.85, max = 0.15 }
+chroma = { scale = 1.1, max = 0.2 }
 
 [categories."fulgora.oil"]        # the oil ocean's surface: dark lilac instead of black-brown
 type = "remap"
@@ -394,14 +394,14 @@ lift = { floor = 0.3, ceil = 0.85, gamma = 0.9 }
 neutral = { chroma_below = 0.06, hue = 300, chroma = 0.05 }
 chroma = { scale = 1.0, max = 0.1 }
 
-[categories."fulgora.ground"]     # rust-red sand, rock and ruins: soft rose clay
+[categories."fulgora.ground"]     # rust-red sand, rock and ruins: close to vanilla, a little lighter and rosier
 type = "remap"
-strength = 0.75
-lift = { floor = 0.42, ceil = 0.95, gamma = 0.85 }
-detail = { sigma = 2.0, gain = 1.15 }
+strength = 0.3                # low: a stronger lift turns the ground into a foggy haze
+lift = { floor = 0.2, ceil = 0.95, gamma = 0.7 }
+detail = { sigma = 2.0, gain = 1.5 }
 hue_anchors = [[35, 18]]
 neutral = { chroma_below = 0.03, hue = 15, chroma = 0.025 }
-chroma = { scale = 0.85, max = 0.12 }
+chroma = { scale = 1.4, max = 0.2 }
 
 [categories."gleba.ground"]       # organic yellows, greens, reds and turquoise: candy pastels
 type = "remap"
@@ -462,11 +462,11 @@ type = "lut"
 # The other planets: lighter days, softer nights.
 "vulcanus-1-day.png"          = { softness = 0.35 }
 "vulcanus-2-night.png"        = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
-"fulgora-1-noon.png"          = { softness = 0.2 }
-"fulgora-2-afternoon.png"     = { softness = 0.2 }
+"fulgora-1-noon.png"          = { softness = 0.6 }   # Fulgora's day grading is dark and muddy
+"fulgora-2-afternoon.png"     = { softness = 0.6 }
 "fulgora-3-after-sunset.png"  = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
 "fulgora-4-before-dawn.png"   = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
-"fulgora-5-morning.png"       = { softness = 0.2 }
+"fulgora-5-morning.png"       = { softness = 0.6 }
 "gleba-1-noon.png"            = { softness = 0.2 }
 "gleba-2-afternoon.png"       = { softness = 0.2 }
 "gleba-3-late-afternoon.png"  = { softness = 0.2 }
