@@ -1,0 +1,63 @@
+# Your settings for Pastel Factorio. After a change, run `just install`; only
+# the files the change affects are recolored again. How the recoloring works
+# (paths, groups, categories, rules) is in pastel.toml.
+
+# How much of the pastel look to apply, each from 0 to 1. 1 is the look as
+# designed; lower blends back toward the game.
+[global]
+brightness = 1.0     # 0 = the game's own lightness, 1 = the full pastel lift
+saturation = 1.0     # 0 = gray, 1 = colors as designed
+
+# What to recolor. false leaves a group exactly as in the game, its liquids
+# included.
+[groups]
+vulcanus = true
+fulgora = true
+gleba = true
+aquilo = true
+space = true        # space platforms, foundation and asteroids
+nauvis = true       # terrain, nature, enemies, resources and lighting
+icons = true        # icons, technologies and other GUI art
+buildings = true    # every building, vehicle and effect, all expansions
+
+# Named colors, used in pastel.toml and below as "$name".
+[colors]
+grass            = "#A8D57B"   # slightly yellower (previous: "#A0D680"; original: "#A5DC8C")
+foliage_ground   = "#66D37A"   # grass tufts & bushes: true vivid green (less lime than the grass)
+dirt             = "#E9BD84"
+sand             = "#F5E2B0"
+red_desert       = "#F2B89A"
+water            = "#7FDDE6"
+deepwater        = "#4FC3D9"
+water_green      = "#8FE3C8"
+deepwater_green  = "#5CCBB0"
+water_shallow    = "#A6EDE8"
+water_mud        = "#D8C99A"
+landfill         = "#DCC9A0"
+nuclear          = "#C9C2A8"
+stone_path       = "#E3DCCF"
+concrete         = "#ECE7DE"
+refined_concrete = "#F4F1EA"
+iron             = "#7297C8"
+copper           = "#F4A67E"
+coal             = "#6F6A92"
+stone            = "#DCC79A"
+uranium          = "#9CF2A6"
+oil              = "#5E5A7A"
+shadow           = "#3A3560"
+moon             = "#4A4A78"
+dusk             = "#FFD9C2"
+lava             = "#F49A82"   # Vulcanus lava: coral instead of molten orange
+oil_ocean        = "#B9A3D6"   # Fulgora oil ocean: soft lilac
+ammonia          = "#7D88CF"   # Aquilo ammonia ocean: periwinkle
+brash_ice        = "#A3B8E3"   # Aquilo brash ice
+
+# Liquids on the other planets. Each tile's color moves toward `color` (or
+# toward its own color, `lighten` of the way to white) by `strength`:
+# 0 = vanilla, 1 = fully the new color.
+[liquids]
+lava = { color = "$lava", strength = 0.75 }
+oil = { color = "$oil_ocean", strength = 0.5 }
+wetland = { lighten = 0.4, strength = 1.0 }
+ammonia = { color = "$ammonia", strength = 0.75 }
+brash_ice = { color = "$brash_ice", strength = 0.75 }

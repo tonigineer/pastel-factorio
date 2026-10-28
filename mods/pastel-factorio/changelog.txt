@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 2026-10-28
+  Graphics:
+    - Recolored Vulcanus, Fulgora, Gleba, Aquilo and space platforms, each keeping its own character: terrain, plants, creatures, resources, lava, wetlands, oceans and the planets seen from orbit.
+    - Recolored the buildings, icons and technologies of Space Age, Quality, Recycler and Elevated Rails.
+    - Lighter days and softer nights on Vulcanus, Fulgora and Gleba.
+    - Black rubber belts with pastel tier colors, turbo belts included.
+    - Hazard concrete keeps dark stripes next to a clear butter yellow.
+  Bugfixes:
+    - Fixed a faint copy of the land showing over the water along shores.
+    - Fixed visible squares around glowing effects: rocket launches, cargo pod thrusters, flamethrower turrets, power switches, working steel furnaces and belt readers.
+  Locale:
+    - Added German.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.0
+Date: 2026-10-27
+  Major Features:
+    - Recolored terrain, ores, trees and decoratives, buildings, enemies, icons, technologies and shadows, shipped with the mod. The game's own files are no longer replaced.
+    - Softer night, dawn and sunset color grading.
+    - Pastel water colors, previously the separate Pastel Water mod.
+  Features:
+    - Startup setting to turn the recolored graphics off and keep only the water colors.

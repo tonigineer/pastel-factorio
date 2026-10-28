@@ -1,0 +1,9 @@
+{
+  "name": "pastel-factorio",
+  "version": "1.1.0",
+  "title": "Pastel Factorio",
+  "author": "cozyfire, tonigineer",
+  "factorio_version": "2.1",
+  "dependencies": ["base >= 2.1", "? elevated-rails", "? quality", "? recycler", "? space-age"],
+  "description": "Bright, soft pastel colors for every planet and building: terrain, water and other liquids, ores, plants, creatures, buildings, icons and night lighting, with black rubber belts in pastel tier colors. Purely visual."
+}

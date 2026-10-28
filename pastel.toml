@@ -1,0 +1,1068 @@
+# How pastel recolors the game: paths, groups, categories, and which category
+# every PNG belongs to. Your own settings (which groups to recolor, colors,
+# brightness, liquids) are in settings.toml; its values win over this file's.
+#
+# Tune with:   just preview <file> --watch
+# then edit either file and save; the preview re-renders.
+#
+# Lightness (L) runs 0 (black) to 1 (white). Chroma (C) is colorfulness:
+# 0 is gray, ~0.1 is a clear pastel, ~0.25 is vivid. Hue (h) is an angle in
+# degrees on the OKLCH wheel: ~30 red, ~60 orange/brown, ~100 yellow,
+# ~140 green, ~200 cyan, ~260 blue, ~300 purple, ~350 pink.
+
+[paths]
+# Factorio install directory (the one containing data/ and bin/). A leading ~ is expanded.
+factorio_dir = "/games/steamapps/common/Factorio"
+# Factorio user data directory (the one containing mods/).
+# ~/.factorio on Linux, ~/Library/Application Support/factorio on Mac, %APPDATA%\Factorio on Windows.
+factorio_user_dir = "~/.factorio"
+
+# =============================================================================
+# Groups: what gets recolored. Each file belongs to the first group with a
+# pattern that matches it; switch groups on and off in settings.toml. A
+# group's `category` is used for its files that no rule under [classify]
+# matches; the rules handle the exceptions.
+# =============================================================================
+
+[[groups]]
+name = "vulcanus"
+category = "vulcanus.ground"
+match = [
+  "space-age/graphics/terrain/{vulcanus,lava-transitions}/**",
+  "space-age/graphics/terrain/{cliffs,craters}/vulcanus/**",
+  "space-age/graphics/terrain/water-transitions/{lava-stone*,foundation-transitions-lava*}",
+  "space-age/graphics/terrain/out-of-map-transition/{volcanic-*,lava-*,*-lava-*}",
+  "space-age/graphics/decorative/{calcite-stain,demolisher-corpse,small-volcanic-rock,sulfur-stain,sulfuric-acid-puddle,tiny-volcanic-rock*,vulcanus-*,waves-relief}/**",
+  "space-age/graphics/entity/{calcite,demolisher,lavaslug,sulfuric-acid-geyser,tungsten-ore}/**",
+  "space-age/graphics/entity/plant/ashland-trees/**",
+  "space-age/graphics/particle/{calcite,demolisher,lava,tungsten-ore}-particle/**",
+  "space-age/graphics/space/vulcanus*.png",
+  "space-age/graphics/lut/vulcanus-*.png",
+]
+
+[[groups]]
+name = "fulgora"
+category = "fulgora.ground"
+match = [
+  "space-age/graphics/terrain/{fulgoran-*,oil-*}.png",
+  "space-age/graphics/terrain/cliffs/fulgora/**",
+  "space-age/graphics/terrain/water-transitions/fulgora-*",
+  "space-age/graphics/terrain/out-of-map-transition/{fulgora-*,oil-*}",
+  "space-age/graphics/decorative/{fulgora-*,fulgoran-*,fulgurite,urchin-cactus}/**",
+  "space-age/graphics/entity/{scrap,lightning}/**",
+  "space-age/graphics/particle/holmium-ore-particle/**",
+  "space-age/graphics/space/fulgora*.png",
+  "space-age/graphics/lut/fulgora-*.png",
+]
+
+[[groups]]
+name = "gleba"
+category = "gleba.ground"
+match = [
+  "space-age/graphics/terrain/gleba/**",
+  "space-age/graphics/terrain/cliffs/gleba/**",
+  "space-age/graphics/terrain/{natural,artificial,overgrowth}-*.png",
+  "space-age/graphics/terrain/out-of-map-transition/gleba-*",
+  "space-age/graphics/decorative/{barnacles-decal,barney,black-sceptre,blood-grape*,bob-fingers,bramble,brown-cup,coral*,curly-root-grey,fuchsia-pita,gleba-*,green-cup,green-lettuce-lichen*,grey-cracked-mud-decal,honeycomb-fungus*,matches-small,mycelium,nerve-roots*,orange-root,pale-lettuce-lichen*,pink-phalanges,polycephalum,red-lichen-decal,split-gill*,veins*,white-carpet-grass,wispy-lichen}/**",
+  "space-age/graphics/entity/{stromatolite,wriggler,strafer,stomper,gleba-spawner,rain}/**",
+  "space-age/graphics/entity/plant/{boompuff,cuttlepop,funneltrunk,hairyclubnub,jellystem,lickmaw,slipstack,stingfrond,sunnycomb,teflilly,water-cane,yumako-tree}/**",
+  "space-age/graphics/particle/{gleba-blood,gleba-tree,pentapod}-particle/**",
+  "space-age/graphics/space/gleba*.png",
+  "space-age/graphics/lut/gleba-*.png",
+]
+
+[[groups]]
+name = "aquilo"
+category = "aquilo.ground"
+match = [
+  "space-age/graphics/terrain/aquilo/**",
+  "space-age/graphics/terrain/water-transitions/ice*",
+  "space-age/graphics/terrain/out-of-map-transition/ice-*",
+  "space-age/graphics/decorative/{aquilo-*,lithium-iceberg-*,snow-drift-decal}/**",
+  "space-age/graphics/entity/{fluorine-vent,lithium-brine,snow}/**",
+  "space-age/graphics/space/aquilo*.png",
+]
+
+[[groups]]
+name = "space"                 # space platforms, foundation and asteroids
+category = "space.platform"
+match = [
+  "space-age/graphics/terrain/{space-platform,foundation}/**",
+  "space-age/graphics/terrain/empty-space.png",
+  "space-age/graphics/terrain/{water-transitions,out-of-map-transition}/foundation*",
+  "space-age/graphics/decorative/space-platform-decorative/**",
+  "space-age/graphics/entity/{asteroid,asteroid-explosions}/**",
+  "space-age/graphics/particle/asteroid-particle/**",
+  "space-age/graphics/space/asteroid*.png",
+]
+
+[[groups]]
+name = "nauvis"                # terrain, nature, enemies, resources and lighting
+category = "entity"
+match = [
+  "base/graphics/{terrain,decorative,particle}/**",
+  "base/graphics/entity/{acid-projectile,acid-splash,acid-sticker,biter,spawner,spitter,worm,tree,fish,iron-ore,copper-ore,coal,stone,uranium-ore,crude-oil}/**",
+  "space-age/graphics/entity/plant/{planted-tree,tree-plant}/**",
+  "space-age/graphics/space/nauvis*.png",
+  "core/graphics/color_luts/**",
+]
+
+[[groups]]
+name = "icons"                 # icons, technologies and other GUI art
+category = "icon"
+match = ["*/graphics/{icons,technology,achievement,equipment,item-group}/**"]
+
+[[groups]]
+name = "buildings"             # every building, vehicle and effect, all expansions
+category = "entity"
+match = ["*/graphics/{entity,particle}/**"]
+
+# Liquid tiles drawn by a shader: their color comes from the game data, not
+# from a PNG. Their target colors and strengths are in settings.toml. Nauvis
+# water has its own in-game settings.
+[liquids]
+lava = { group = "vulcanus", tiles = ["lava", "lava-hot"] }
+oil = { group = "fulgora", tiles = ["oil-ocean-deep", "oil-ocean-deep-2"] }
+wetland = { group = "gleba", tiles = [
+  "gleba-deep-lake", "wetland-blue-slime", "wetland-dead-skin", "wetland-green-slime", "wetland-jellynut",
+  "wetland-light-dead-skin", "wetland-light-green-slime", "wetland-pink-tentacle", "wetland-red-tentacle", "wetland-yumako",
+  "lowland-brown-blubber", "lowland-cream-cauliflower", "lowland-cream-cauliflower-2", "lowland-cream-red",
+  "lowland-dead-skin", "lowland-dead-skin-2", "lowland-olive-blubber", "lowland-olive-blubber-2", "lowland-olive-blubber-3",
+  "lowland-pale-green", "lowland-red-infection", "lowland-red-vein", "lowland-red-vein-2", "lowland-red-vein-3",
+  "lowland-red-vein-4", "lowland-red-vein-dead",
+] }
+ammonia = { group = "aquilo", tiles = ["ammoniacal-ocean", "ammoniacal-ocean-2"] }
+brash_ice = { group = "aquilo", tiles = ["brash-ice"] }
+
+# =============================================================================
+# Categories. Every category used in the rules at the bottom is defined here.
+# `inherit = "other"` starts from another category's settings; nested tables
+# (like `spread`) merge key by key.
+# =============================================================================
+
+[categories.passthrough]
+type = "passthrough"
+
+# ------------------------------------------------------------------- terrain
+# 'transfer' moves the category's median color (measured over all of its
+# files) to `target`, and scales the variation around it by `spread`
+# (1 = keep vanilla variation, <1 flatter, >1 more contrast).
+# per_file_match (0..1): also measure each main tile sheet on its own and
+# move it toward the target, so sheets that start cooler/yellower than their
+# siblings don't stand out. 0 = off.
+[categories."terrain.grass"]
+type = "transfer"
+target = "$grass"
+spread = { L = 1.15, C = 1.0, h = 0.35 }   # original h: 0.5
+soft_max = 0.88               # roll off highlights instead of clipping to white
+per_file_match = 0.7          # pull each grass sheet's own average toward the target
+                              # (0 = one shared adjustment, 1 = all sheets identical on average)
+
+[categories."terrain.dirt"]
+type = "transfer"
+target = "$dirt"
+spread = { L = 1.0, C = 1.0, h = 1.0 }
+
+[categories."terrain.sand"]   # sand is already very light, so cap highlights so grains stay cream, not white
+inherit = "terrain.dirt"
+target = "$sand"
+spread = { L = 0.85 }         # slightly less light/dark spread than dirt (1.0)
+soft_max = 0.9                # roll off highlights instead of clipping to white
+
+[categories."terrain.red_desert"]
+inherit = "terrain.dirt"
+target = "$red_desert"
+
+[categories."terrain.landfill"]
+inherit = "terrain.dirt"
+target = "$landfill"
+
+[categories."terrain.nuclear"]
+inherit = "terrain.dirt"
+target = "$nuclear"
+
+[categories."terrain.stone_path"]
+inherit = "terrain.dirt"
+target = "$stone_path"
+
+[categories."terrain.concrete"]
+inherit = "terrain.dirt"
+target = "$concrete"
+spread = { L = 0.9, C = 0.5, h = 0.3 }
+
+[categories."terrain.refined_concrete"]
+inherit = "terrain.concrete"
+target = "$refined_concrete"
+
+[categories."terrain.water"]
+type = "transfer"
+target = "$water"
+spread = { L = 2.2, C = 1.2, h = 0.6 }
+
+[categories."terrain.deepwater"]
+inherit = "terrain.water"
+target = "$deepwater"
+
+[categories."terrain.water_green"]
+inherit = "terrain.water"
+target = "$water_green"
+
+[categories."terrain.deepwater_green"]
+inherit = "terrain.water"
+target = "$deepwater_green"
+
+[categories."terrain.water_shallow"]
+inherit = "terrain.water"
+target = "$water_shallow"
+
+[categories."terrain.water_mud"]
+inherit = "terrain.water"
+target = "$water_mud"
+
+[categories."terrain.hazard"]  # yellow stripes go butter yellow, dark stripes stay dark (soft plum)
+type = "remap"
+lift = { floor = 0.62, ceil = 0.98, gamma = 0.8 }
+hue_anchors = [[80, 92]]
+chroma = { scale = 1.15, max = 0.15 }
+muted = { below = 0.018, above = 0.032, blur = 1.0, lift = { floor = 0.26, ceil = 0.52, gamma = 1.0 }, neutral = { chroma_below = 0.07, hue = 305, chroma = 0.035 }, chroma = { scale = 0.3, max = 0.05 } }
+
+# ---------------------------------------------------------------------- ores
+[categories."ore.iron"]
+type = "transfer"
+strength = 0.5                # halfway between vanilla and the full recolor
+target = "$iron"
+spread = { L = 1.05, C = 0.6, h = 0.25 }
+soft_max = 0.9
+
+[categories."ore.copper"]
+inherit = "ore.iron"
+target = "$copper"
+
+[categories."ore.coal"]
+inherit = "ore.iron"
+target = "$coal"
+
+[categories."ore.stone"]
+inherit = "ore.iron"
+target = "$stone"
+
+[categories."ore.uranium"]
+inherit = "ore.iron"
+target = "$uranium"
+
+[categories."ore.oil"]
+inherit = "ore.iron"
+target = "$oil"
+
+# ------------------------------------------------------------------ entities
+# 'remap' settings:
+#   lift:   L' = floor + (ceil - floor) * L^gamma. Higher floor = brighter darks.
+#   detail: sigma = blur radius in pixels for the lift; gain > 1 re-adds a
+#           little extra texture so lifted sprites don't look flat.
+#           color_blur smooths color (not lightness) over this many pixels,
+#           so gray grain doesn't become rainbow speckle; cleaner flat color.
+#   hue_anchors: [from, to] hue pairs; hues in between are interpolated.
+#   hue_chroma_range: [lo, hi]; the hue remap applies fully to colors less
+#           colorful than lo and not at all above hi, so bright accent
+#           colors (belt yellow, inserter blue) keep their hue.
+#   neutral: grays (chroma below chroma_below) get this hue and chroma.
+#   shade:  areas that were darker than `below` lean toward this hue,
+#           so shading reads as cool lavender instead of black.
+#   chroma: C' = min(C * scale + add, max)
+#   strength: how much of the recolor to apply. 1 = full, 0.5 = halfway
+#           between vanilla and full, 0 = vanilla. Works on every
+#           remap and transfer category, and is inherited.
+#   outline: within `width` pixels of the sprite's edge, pull lightness back
+#           toward the original dark contour (strength 0..1), so sprites stay
+#           crisp against the light ground.
+[categories.entity]
+type = "remap"
+strength = 0.5                # halfway between vanilla (0) and the full recolor (1)
+lift = { floor = 0.25, ceil = 0.97, gamma = 0.7 }
+detail = { sigma = 2.0, gain = 1.2, color_blur = 1.5 }
+hue_anchors = [[40, 50], [75, 62], [110, 150], [170, 185], [250, 250], [320, 330]]
+hue_chroma_range = [0.05, 0.11]
+neutral = { chroma_below = 0.035, hue = 265, chroma = 0.028 }
+shade = { hue = 295, below = 0.30, strength = 0.8, chroma = 0.05 }
+chroma = { scale = 1.5, add = 0.015, max = 0.18 }
+outline = { width = 2.0, strength = 0.6 }
+
+[categories.enemy]
+inherit = "entity"
+lift = { floor = 0.33 }
+neutral = { hue = 330, chroma = 0.03 }
+shade = { hue = 320 }
+chroma = { max = 0.13 }
+
+[categories.technology]
+inherit = "entity"
+lift = { floor = 0.32 }
+
+[categories.icon]
+inherit = "entity"
+detail = { sigma = 0, color_blur = 0 }   # icons are small; no blur
+outline = { width = 1.0 }
+
+[categories."icon.gui"]       # signals, arrows, fluids, achievements: light touch
+type = "remap"
+lift = { floor = 0.12, ceil = 1.0, gamma = 0.95 }
+chroma = { scale = 0.95, max = 0.3 }
+
+[categories.light]            # additive glow layers: no lift, slightly softer
+type = "remap"
+chroma = { scale = 0.9, max = 0.35 }
+
+[categories.effect]
+inherit = "light"
+
+# -------------------------------------------------------------------- nature
+[categories.foliage]
+type = "remap"
+strength = 0.5
+lift = { floor = 0.42, ceil = 0.97, gamma = 0.8 }
+detail = { sigma = 1.5, gain = 1.15 }
+hue_anchors = [[60, 95], [100, 128], [140, 145], [180, 170]]
+shade = { hue = 200, below = 0.25, strength = 0.5, chroma = 0.03 }
+chroma = { scale = 1.25, add = 0.01, max = 0.16 }
+
+[categories."foliage.ground"]  # green grass tufts and small bushes on the ground
+type = "transfer"              # like terrain: move every tuft to one bright green
+strength = 0.6                 # 60% of the way from vanilla to the new green
+target = "$foliage_ground"
+spread = { L = 0.85, C = 0.8, h = 0.25 }  # low hue spread: yellowish patches don't drift back to lime
+soft_max = 0.8                 # cap highlights lower so bright spots stay green, not white
+
+[categories."foliage.dry"]
+inherit = "foliage"
+hue_anchors = [[50, 72], [90, 88], [130, 115]]
+chroma = { scale = 1.0, max = 0.12 }
+
+[categories."foliage.red"]
+inherit = "foliage"
+hue_anchors = [[20, 15], [40, 30], [100, 125]]
+
+[categories.wood]
+inherit = "foliage"
+hue_anchors = [[50, 58], [90, 75]]
+shade = { hue = 300 }
+chroma = { scale = 1.1, max = 0.11 }
+
+[categories.rock]
+type = "remap"
+strength = 0.5
+lift = { floor = 0.45, ceil = 0.97, gamma = 0.8 }
+detail = { sigma = 2.0, gain = 1.2 }
+neutral = { chroma_below = 0.04, hue = 75, chroma = 0.03 }
+shade = { hue = 295, below = 0.35, strength = 0.8, chroma = 0.04 }
+chroma = { scale = 1.0, max = 0.09 }
+
+# --------------------------------------------------------------------- belts
+# Black rubber with pastel tier colors: grayish pixels (the rubber and its
+# frame) use the `muted` settings and go dark; colored pixels (the arrows)
+# use the category's own settings and go pastel. The arrows keep their shape.
+[categories.belt]
+type = "remap"
+lift = { floor = 0.5, ceil = 0.96, gamma = 0.85 }
+hue_anchors = [[25, 20], [70, 95], [150, 150], [255, 245]]   # yellow-orange arrows -> clear pastel yellow; red and blue keep their hue
+chroma = { scale = 1.0, max = 0.16 }
+muted = { below = 0.05, above = 0.1, blur = 0.75, lift = { floor = 0.18, ceil = 0.5, gamma = 1.0 }, detail = { sigma = 1.0, gain = 1.3 }, neutral = { chroma_below = 0.1, hue = 285, chroma = 0.018 }, chroma = { scale = 0.15, max = 0.025 } }
+
+# ------------------------------------------------------------------ planets
+# The other planets keep their identity, just lighter and softer. Each
+# planet's group uses its *.ground category for everything without a rule.
+[categories."vulcanus.ground"]    # basalt and ash: warm taupe-mauve; hot cracks glow peach-coral
+type = "remap"
+strength = 0.75
+lift = { floor = 0.4, ceil = 0.93, gamma = 0.85 }
+detail = { sigma = 2.0, gain = 1.15 }
+neutral = { chroma_below = 0.05, hue = 20, chroma = 0.028 }
+shade = { hue = 320, below = 0.3, strength = 0.6, chroma = 0.03 }
+chroma = { scale = 0.9, add = 0.005, max = 0.15 }
+
+[categories."vulcanus.lava"]      # the lava's own picture: soft coral glow, plum-mauve crust
+type = "remap"
+strength = 0.8
+lift = { floor = 0.35, ceil = 0.97, gamma = 0.85 }
+hue_anchors = [[50, 35]]
+neutral = { chroma_below = 0.04, hue = 330, chroma = 0.03 }
+chroma = { scale = 0.85, max = 0.15 }
+
+[categories."fulgora.oil"]        # the oil ocean's surface: dark lilac instead of black-brown
+type = "remap"
+strength = 0.75
+lift = { floor = 0.3, ceil = 0.85, gamma = 0.9 }
+neutral = { chroma_below = 0.06, hue = 300, chroma = 0.05 }
+chroma = { scale = 1.0, max = 0.1 }
+
+[categories."fulgora.ground"]     # rust-red sand, rock and ruins: soft rose clay
+type = "remap"
+strength = 0.75
+lift = { floor = 0.42, ceil = 0.95, gamma = 0.85 }
+detail = { sigma = 2.0, gain = 1.15 }
+hue_anchors = [[35, 18]]
+neutral = { chroma_below = 0.03, hue = 15, chroma = 0.025 }
+chroma = { scale = 0.85, max = 0.12 }
+
+[categories."gleba.ground"]       # organic yellows, greens, reds and turquoise: candy pastels
+type = "remap"
+strength = 0.7
+lift = { floor = 0.42, ceil = 0.97, gamma = 0.8 }
+detail = { sigma = 1.5, gain = 1.15 }
+shade = { hue = 320, below = 0.28, strength = 0.5, chroma = 0.03 }
+chroma = { scale = 1.15, add = 0.01, max = 0.15 }
+
+[categories."aquilo.ground"]      # snow, ice and dust: icy lilac and periwinkle
+type = "remap"
+strength = 0.75
+lift = { floor = 0.48, ceil = 0.98, gamma = 0.85 }
+detail = { sigma = 2.0, gain = 1.1 }
+hue_anchors = [[240, 255]]
+neutral = { chroma_below = 0.04, hue = 280, chroma = 0.03 }
+chroma = { scale = 1.1, max = 0.12 }
+
+[categories."space.platform"]     # platform plates and foundation: light lavender metal
+type = "remap"
+strength = 0.6
+lift = { floor = 0.5, ceil = 0.97, gamma = 0.8 }
+detail = { sigma = 1.5, gain = 1.15 }
+neutral = { chroma_below = 0.05, hue = 285, chroma = 0.025 }
+chroma = { scale = 1.0, max = 0.1 }
+
+[categories."planet.resource"]    # tungsten, calcite, scrap, stromatolites, vents, asteroids
+type = "remap"                    # lighter, but each keeps its own color so they stay easy to tell apart
+strength = 0.6
+lift = { floor = 0.4, ceil = 0.97, gamma = 0.8 }
+detail = { sigma = 1.5, gain = 1.2 }
+neutral = { chroma_below = 0.03, hue = 290, chroma = 0.02 }
+chroma = { scale = 1.25, add = 0.005, max = 0.16 }
+
+[categories."planet.globe"]       # the planets as seen from orbit
+type = "remap"
+strength = 0.6
+lift = { floor = 0.3, ceil = 0.97, gamma = 0.85 }
+chroma = { scale = 1.1, max = 0.15 }
+
+# ------------------------------------------------------------------- special
+[categories.shadow]
+type = "shadow"
+alpha_scale = 0.6             # 1 = vanilla darkness, 0 = no shadows
+tint = "$shadow"              # may be ignored by the game; the lower opacity still applies
+
+[categories.lut]
+type = "lut"
+# Files not listed here are left unchanged.
+#   softness: 0..1, how far to pull the grading back toward "no grading"
+#   moon / moon_strength: lifts the darkest colors toward this color
+#   tint / tint_strength: color cast over everything
+[categories.lut.files]
+"lut-night.png"  = { softness = 0.2, moon = "$moon", moon_strength = 0.25 }
+"night.png"      = { softness = 0.2, moon = "$moon", moon_strength = 0.25 }
+"lut-dawn.png"   = { softness = 0.30, tint = "$dusk", tint_strength = 0.25 }
+"lut-sunset.png" = { softness = 0.30, tint = "$dusk", tint_strength = 0.25 }
+# The other planets: lighter days, softer nights.
+"vulcanus-1-day.png"          = { softness = 0.35 }
+"vulcanus-2-night.png"        = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
+"fulgora-1-noon.png"          = { softness = 0.2 }
+"fulgora-2-afternoon.png"     = { softness = 0.2 }
+"fulgora-3-after-sunset.png"  = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
+"fulgora-4-before-dawn.png"   = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
+"fulgora-5-morning.png"       = { softness = 0.2 }
+"gleba-1-noon.png"            = { softness = 0.2 }
+"gleba-2-afternoon.png"       = { softness = 0.2 }
+"gleba-3-late-afternoon.png"  = { softness = 0.2 }
+"gleba-4-sunset.png"          = { softness = 0.25, tint = "$dusk", tint_strength = 0.2 }
+"gleba-5-after-sunset.png"    = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
+"gleba-6-before-dawn.png"     = { softness = 0.25, moon = "$moon", moon_strength = 0.2 }
+"gleba-7-dawn.png"            = { softness = 0.25, tint = "$dusk", tint_strength = 0.2 }
+"gleba-8-morning.png"         = { softness = 0.2 }
+
+# =============================================================================
+# Rules: which category each PNG belongs to.
+#
+# Paths are relative to data/, e.g. base/graphics/terrain/grass-1.png
+# Rules are checked top to bottom and the FIRST match wins, so specific rules
+# go above general ones. Patterns: ** = any number of folders, * = anything
+# within one folder name, {a,b} = either a or b. Matching ignores case.
+#
+# Every PNG must match some rule. If one doesn't, the build stops and lists it.
+# =============================================================================
+[classify]
+# Parts of files that are never recolored: every column from x_from to the
+# right edge. Tile transition sheets hold three layers side by side (overlay,
+# background and a grayscale mask). The mask decides where one tile cuts into
+# the other; it is data, not color. The list comes from the game's own
+# prototype data; regenerate it with `just scan` after a game update.
+keep = [
+  # BEGIN generated keep (`just scan`)
+  { match = "base/graphics/terrain/out-of-map-transition/concrete-out-of-map-transition-b.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/concrete-out-of-map-transition.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/concrete-shore-out-of-map-transition.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/dark-dirt-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/dirt-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/dry-dirt-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/grass-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/grass-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/landfill-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/nuclear-ground-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/refined-concrete-out-of-map-transition-b.png", x_from = 1024 },
+  { match = "base/graphics/terrain/out-of-map-transition/refined-concrete-out-of-map-transition.png", x_from = 1024 },
+  { match = "base/graphics/terrain/out-of-map-transition/refined-concrete-shore-out-of-map-transition.png", x_from = 1024 },
+  { match = "base/graphics/terrain/out-of-map-transition/sand-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/sand-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/stone-path-out-of-map-transition-b.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/stone-path-out-of-map-transition.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/stone-path-shore-out-of-map-transition.png", x_from = 2048 },
+  { match = "base/graphics/terrain/out-of-map-transition/water-out-of-map-transition-tintable.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/water-shallow-out-of-map-transition-to-water.png", x_from = 2176 },
+  { match = "base/graphics/terrain/out-of-map-transition/water-shallow-out-of-map-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/concrete-transitions.png", x_from = 2048 },
+  { match = "base/graphics/terrain/water-transitions/concrete.png", x_from = 2048 },
+  { match = "base/graphics/terrain/water-transitions/dark-dirt-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/dark-dirt.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/dry-dirt-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/dry-dirt.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/grass-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/grass.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/landfill-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/landfill.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/nuclear-ground-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/nuclear-ground.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/refined-concrete-transitions.png", x_from = 1024 },
+  { match = "base/graphics/terrain/water-transitions/refined-concrete.png", x_from = 1024 },
+  { match = "base/graphics/terrain/water-transitions/sand-transition.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/sand.png", x_from = 2176 },
+  { match = "base/graphics/terrain/water-transitions/stone-path-transitions.png", x_from = 2048 },
+  { match = "base/graphics/terrain/water-transitions/stone-path.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/concrete-lava.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/concrete-transitions-lava.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/foundation-lava.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/foundation-transitions-lava.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/lava-stone-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/lava-transitions/lava-stone.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/lava-transitions/refined-concrete-lava.png", x_from = 1024 },
+  { match = "space-age/graphics/terrain/lava-transitions/refined-concrete-transitions-lava.png", x_from = 1024 },
+  { match = "space-age/graphics/terrain/lava-transitions/stone-path-lava-transitions.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/lava-transitions/stone-path-lava.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/concrete-lava-shore-out-of-map.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/foundation-lava-shore-out-of-map.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/foundation-out-of-map-transition-b.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/foundation-out-of-map-transition.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/foundation-shore-out-of-map-transition.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/fulgora-out-of-map-transition-b.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/fulgora-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/fulgora-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition-b-red.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition-b-yellow.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition-b.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition-red.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition-yellow.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-shore-out-of-map-transition-red.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-shore-out-of-map-transition-yellow.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/gleba-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/ice-out-of-map-transition-b.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/ice-out-of-map.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/ice-shore-out-of-map.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/lava-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/lava-stone-cold-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/lava-stone-shore-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/oil-out-of-map-transition-b.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/oil-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/refined-concrete-lava-shore-out-of-map.png", x_from = 1024 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/stone-path-lava-shore-out-of-map.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/out-of-map-transition/volcanic-out-of-map-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/foundation-transitions.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/water-transitions/foundation.png", x_from = 2048 },
+  { match = "space-age/graphics/terrain/water-transitions/fulgora-oil-sand-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/fulgora-oil-sand.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/fulgora-rock-slab-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/fulgora-sand-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/ice-2.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/ice-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/lava-stone-cold-transition.png", x_from = 2176 },
+  { match = "space-age/graphics/terrain/water-transitions/lava-stone-cold.png", x_from = 2176 },
+  # END generated keep
+]
+
+rules = [
+  # ===== 1. Never recolor: data, not color ====================================
+  { match = "base/graphics/icons/quality-normal.png", category = "icon" },   # an icon, not a normal map
+  { match = "**/*-normal.png",                   category = "passthrough" },   # tree normal maps (lighting data)
+  { match = "**/*mask*.png",                     category = "passthrough" },   # multiplied by player / fluid / enemy tint
+  { match = "**/*tint*.png",                     category = "passthrough" },   # tintable, tinted, to-tint layers
+  { match = "**/*-spec.png",                     category = "passthrough" },   # specular (shine) maps
+  { match = "base/graphics/terrain/effect-maps/**", category = "passthrough" },
+  { match = "base/graphics/terrain/effects/**",  category = "passthrough" },
+  { match = "base/graphics/terrain/masks/**",    category = "passthrough" },
+  # Space Age: the planet globes are recolored; the rest of the sky, the
+  # weather, logos and space backdrops stay as they are. Frozen belts stay
+  # icy: the black rubber treatment would turn their ice black.
+  { match = "space-age/graphics/space/{nauvis,vulcanus,fulgora,gleba,aquilo}.png", category = "planet.globe" },
+  { match = "space-age/graphics/space/asteroidTexture.png", category = "planet.resource" },
+  { match = "space-age/graphics/{space,procession,sticker}/**", category = "passthrough" },
+  { match = "space-age/graphics/terrain/{empty-space.png,effect-maps/**,masks/**}", category = "passthrough" },
+  { match = "space-age/graphics/entity/{rain,snow,beam,lightning,capture-robot-rocket,factorio-space-age-logo,wube-logo-space-platform}/**", category = "passthrough" },
+  { match = "space-age/graphics/entity/frozen/{transport-belt,fast-transport-belt,express-transport-belt}/**", category = "passthrough" },
+  { match = "space-age/graphics/entity/turbo-transport-belt/*-frozen.png", category = "passthrough" },
+  { match = "space-age/graphics/*.png",          category = "passthrough" },   # logo
+
+  # ===== 2. core: GUI stays vanilla; only the color LUTs change ===============
+  { match = "core/graphics/color_luts/*.png",    category = "lut" },
+  { match = "core/graphics/**",                  category = "passthrough" },
+
+  # ===== 3. Special blend layers ===============================================
+  { match = "**/*shadow*.png",                   category = "shadow" },
+  # From the game's own prototype data (file names don't say how a file is
+  # used); regenerate with `just scan` after a game update:
+  # - sprites drawn additively or as light, where black means "add nothing"
+  #   and a lifted black would show as a square around the effect: light;
+  # - masks, effect maps and shader textures, which are data: passthrough.
+  # BEGIN generated rules (`just scan`)
+  { match = "base/graphics/terrain/effect-maps/concrete-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/concrete-out-of-map-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-dirt-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-dirt-to-land-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-dirt-to-out-of-map-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-grass-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-grass-to-land-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-grass-to-out-of-map-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-sand-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-sand-to-land-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effect-maps/water-sand-to-out-of-map-mask.png", category = "passthrough" },
+  { match = "base/graphics/terrain/effects/water-noise.png", category = "passthrough" },
+  { match = "base/graphics/terrain/masks/sand-water-edge-3-way-transition.png", category = "passthrough" },
+  { match = "base/graphics/terrain/masks/transition-1.png", category = "passthrough" },
+  { match = "base/graphics/terrain/masks/water-edge-transition.png", category = "passthrough" },
+  { match = "core/graphics/white-square.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/lava-dirt-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/lava-dirt-to-land-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/lava-dirt-to-out-of-map-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/water-fulgora-sand-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/water-fulgora-sand-to-land-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/water-fulgora-sand-to-out-of-map-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/effect-maps/water-gleba-mask.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/gleba/puddle-noise.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/gleba/watercaustics.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/masks/lava-edge-transition.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/oilGradient.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/oilNoise.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/vulcanus/lava-textures/lava-noise-1.png", category = "passthrough" },
+  { match = "space-age/graphics/terrain/vulcanus/lava-textures/lava-noise-2.png", category = "passthrough" },
+  { match = "base/graphics/entity/assembling-machine-1/assembling-machine-1-status-light.png", category = "light" },
+  { match = "base/graphics/entity/assembling-machine-2/assembling-machine-2-status-light.png", category = "light" },
+  { match = "base/graphics/entity/assembling-machine-3/assembling-machine-3-status-light.png", category = "light" },
+  { match = "base/graphics/entity/beacon/beacon-light.png", category = "light" },
+  { match = "base/graphics/entity/beacon/beacon-module-lights-1.png", category = "light" },
+  { match = "base/graphics/entity/beacon/beacon-module-lights-2.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-1.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-2.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-3.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-4.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-5.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-body-6.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-head.png", category = "light" },
+  { match = "base/graphics/entity/beam/beam-tail.png", category = "light" },
+  { match = "base/graphics/entity/boiler/boiler-E-light.png", category = "light" },
+  { match = "base/graphics/entity/boiler/boiler-N-light.png", category = "light" },
+  { match = "base/graphics/entity/boiler/boiler-S-light.png", category = "light" },
+  { match = "base/graphics/entity/boiler/boiler-W-light.png", category = "light" },
+  { match = "base/graphics/entity/car/car-light.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/connections/shared-connections-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-A.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-B.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-C.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hatches/planet-upper-front-hatch-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hatches/shared-upper-back-hatch-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hubs/planet-hub-emission-A.png", category = "light" },
+  { match = "base/graphics/entity/cargo-hubs/hubs/planet-hub-emission-C.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-open-landing-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-opening-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-static-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-static-open-emission.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-thruster-ignition.png", category = "light" },
+  { match = "base/graphics/entity/cargo-pod/pod-thruster-loop.png", category = "light" },
+  { match = "base/graphics/entity/centrifuge/centrifuge-ABC-light.png", category = "light" },
+  { match = "base/graphics/entity/electric-furnace/electric-furnace-ground-light.png", category = "light" },
+  { match = "base/graphics/entity/electric-furnace/electric-furnace-light.png", category = "light" },
+  { match = "base/graphics/entity/fire-smoke/fire-smoke-glow.png", category = "light" },
+  { match = "base/graphics/entity/flamethrower-turret/flamethrower-turret-gun-active.png", category = "light" },
+  { match = "base/graphics/entity/flamethrower-turret/flamethrower-turret-muzzle-fire.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-E-fluid.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-E-glow.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-N-fluid.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-N-glow.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-S-fluid.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-S-glow.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-W-fluid.png", category = "light" },
+  { match = "base/graphics/entity/heat-exchanger/heatex-W-glow.png", category = "light" },
+  { match = "base/graphics/entity/lab/lab-light.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-body-light.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-body.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-end-light.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-end.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-ground-light-body.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-ground-light-head.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-ground-light-tail.png", category = "light" },
+  { match = "base/graphics/entity/laser-turret/laser-turret-shooting-light.png", category = "light" },
+  { match = "base/graphics/entity/laser/laser-to-tint-medium.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-1.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-2.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-3.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-4.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-5.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-6.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-7.png", category = "light" },
+  { match = "base/graphics/entity/locomotive/locomotive-lights-8.png", category = "light" },
+  { match = "base/graphics/entity/nuclear-reactor/reactor-lights-color.png", category = "light" },
+  { match = "base/graphics/entity/oil-refinery/east/oil-refinery-lights-east.png", category = "light" },
+  { match = "base/graphics/entity/oil-refinery/north/oil-refinery-lights-north.png", category = "light" },
+  { match = "base/graphics/entity/oil-refinery/oil-refinery-fire-light.png", category = "light" },
+  { match = "base/graphics/entity/oil-refinery/south/oil-refinery-lights-south.png", category = "light" },
+  { match = "base/graphics/entity/oil-refinery/west/oil-refinery-lights-west.png", category = "light" },
+  { match = "base/graphics/entity/power-switch/power-switch-electricity-loop.png", category = "light" },
+  { match = "base/graphics/entity/power-switch/power-switch-electricity-start.png", category = "light" },
+  { match = "base/graphics/entity/power-switch/power-switch-led.png", category = "light" },
+  { match = "base/graphics/entity/rail-chain-signal/rail-chain-signal-lights.png", category = "light" },
+  { match = "base/graphics/entity/rail-signal/rail-signal-lights.png", category = "light" },
+  { match = "base/graphics/entity/rocket-silo/03-rocket-over-glare.png", category = "light" },
+  { match = "base/graphics/entity/rocket-silo/03-rocket-over-glow.png", category = "light" },
+  { match = "base/graphics/entity/rocket-silo/crafting-light.png", category = "light" },
+  { match = "base/graphics/entity/rocket-silo/rocket-jet.png", category = "light" },
+  { match = "base/graphics/entity/rocket-silo/rocket-static-emission.png", category = "light" },
+  { match = "base/graphics/entity/rocket/rocket-lights.png", category = "light" },
+  { match = "base/graphics/entity/steel-furnace/steel-furnace-glow.png", category = "light" },
+  { match = "base/graphics/entity/steel-furnace/steel-furnace-ground-light.png", category = "light" },
+  { match = "base/graphics/entity/steel-furnace/steel-furnace-working.png", category = "light" },
+  { match = "base/graphics/entity/stone-furnace/stone-furnace-ground-light.png", category = "light" },
+  { match = "base/graphics/entity/stone-furnace/stone-furnace-light.png", category = "light" },
+  { match = "base/graphics/entity/tank/tank-light.png", category = "light" },
+  { match = "base/graphics/entity/transport-belt/connector/transport-belt-connector-frame-main-scanner-nw-ne.png", category = "light" },
+  { match = "base/graphics/entity/transport-belt/connector/transport-belt-connector-frame-main-scanner-sw-se.png", category = "light" },
+  { match = "base/graphics/entity/uranium-ore/uranium-ore-glow.png", category = "light" },
+  { match = "base/graphics/icons/atomic-bomb-light.png", category = "light" },
+  { match = "base/graphics/icons/nuclear-fuel-light.png", category = "light" },
+  { match = "base/graphics/icons/uranium-cannon-shell-light.png", category = "light" },
+  { match = "base/graphics/icons/uranium-fuel-cell-light.png", category = "light" },
+  { match = "base/graphics/icons/uranium-rounds-magazine-light.png", category = "light" },
+  { match = "core/graphics/artillery-impact-map-visualization.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/elevated-rail-chain-signal/elevated-rail-chain-signal-lights.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/elevated-rail-signal/elevated-rail-signal-lights.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-1.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-2.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-3.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-4.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-5.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-6.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-7.png", category = "light" },
+  { match = "elevated-rails/graphics/entity/locomotive/locomotive-sloped-lights-8.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-E-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-N-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-S-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-W-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-flipped-E-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-flipped-N-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-flipped-S-lights.png", category = "light" },
+  { match = "recycler/graphics/entity/recycler/recycler-flipped-W-lights.png", category = "light" },
+  { match = "space-age/graphics/entity/agricultural-tower/agricultural-tower-base-light.png", category = "light" },
+  { match = "space-age/graphics/entity/asteroid-collector/asteroid-collector-status-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-0.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-1.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-2.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-3.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-4.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-5.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/chain-body-6.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-1.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-2.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-3.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-4.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-5.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/lightning-loop-6.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-1.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-2.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-3.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-4.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-5.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-body-6.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-head.png", category = "light" },
+  { match = "space-age/graphics/entity/beam/tesla-tail.png", category = "light" },
+  { match = "space-age/graphics/entity/big-mining-drill/East/big-mining-drill-E-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/big-mining-drill/North/big-mining-drill-N-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/big-mining-drill/South/big-mining-drill-S-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/big-mining-drill/West/big-mining-drill-W-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/biochamber/biochamber-glow-2.png", category = "light" },
+  { match = "space-age/graphics/entity/biochamber/biochamber-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/biochamber/biochamber-status-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/biolab/biolab-lights.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/bays/shared-cargo-bay-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-lower-hatch-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-lower-hatch-pod-emission-A.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-lower-hatch-pod-emission-B.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-lower-hatch-pod-emission-C.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-upper-front-hatch-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-upper-hatch-pod-emission-A.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-upper-hatch-pod-emission-B.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/platform-upper-hatch-pod-emission-C.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/shared-bay-hatch-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hatches/shared-cargo-bay-pod-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-1-1.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-1-2.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-1-3.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-1-4.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-2.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-3.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-4.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-5.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-6.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-7.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-8.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-A-9.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-1.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-10.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-2.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-3.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-4.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-5.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-6.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-7.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-8.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/cockpit/space-platform-hub-cockpit-B-9.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/platform-hub-emission-A.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/platform-hub-emission-B.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-hubs/hubs/platform-hub-emission-C.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-pod/pod-closed-rotation-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-pod/pod-open-reentry-flame.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-pod/pod-open-rotation-emission.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-pod/rocket-backblast-back.png", category = "light" },
+  { match = "space-age/graphics/entity/cargo-pod/rocket-backblast-front.png", category = "light" },
+  { match = "space-age/graphics/entity/crusher/crusher-horizontal-light.png", category = "light" },
+  { match = "space-age/graphics/entity/crusher/crusher-vertical-light.png", category = "light" },
+  { match = "space-age/graphics/entity/cryogenic-plant/cryogenic-plant-anim6-working-light.png", category = "light" },
+  { match = "space-age/graphics/entity/cryogenic-plant/cryogenic-plant-status-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/cryogenic-plant/cryogenic-plant-working-lights.png", category = "light" },
+  { match = "space-age/graphics/entity/electromagnetic-plant/electromagnetic-plant-lights-cool-down.png", category = "light" },
+  { match = "space-age/graphics/entity/electromagnetic-plant/electromagnetic-plant-lights-rotate-1.png", category = "light" },
+  { match = "space-age/graphics/entity/electromagnetic-plant/electromagnetic-plant-lights-rotate-2.png", category = "light" },
+  { match = "space-age/graphics/entity/electromagnetic-plant/electromagnetic-plant-lights-rotate-continue.png", category = "light" },
+  { match = "space-age/graphics/entity/electromagnetic-plant/electromagnetic-plant-lights-warm-up.png", category = "light" },
+  { match = "space-age/graphics/entity/foundry/foundry-lights-1.png", category = "light" },
+  { match = "space-age/graphics/entity/foundry/foundry-lights-2.png", category = "light" },
+  { match = "space-age/graphics/entity/foundry/foundry-status-lamp.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/east/fusion-generator-east-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/east/fusion-generator-east-input-1-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/east/fusion-generator-east-input-2-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/north/fusion-generator-north-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/north/fusion-generator-north-input-1-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/north/fusion-generator-north-input-2-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/south/fusion-generator-south-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/south/fusion-generator-south-input-1-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/south/fusion-generator-south-input-2-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/west/fusion-generator-west-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/west/fusion-generator-west-input-1-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-generator/west/fusion-generator-west-input-2-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-1-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-2-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-3-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-4-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-5-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-6-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-7-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-connection-8-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/fusion-reactor/fusion-reactor-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/heating-tower/heating-tower-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/heating-tower/heating-tower-working-fire.png", category = "light" },
+  { match = "space-age/graphics/entity/heating-tower/heating-tower-working-light.png", category = "light" },
+  { match = "space-age/graphics/entity/lightning-collector/lightning-collector-charge.png", category = "light" },
+  { match = "space-age/graphics/entity/lightning-collector/lightning-collector-discharge.png", category = "light" },
+  { match = "space-age/graphics/entity/lightning-rod/lightning-rod-charge.png", category = "light" },
+  { match = "space-age/graphics/entity/lightning-rod/lightning-rod-discharge.png", category = "light" },
+  { match = "space-age/graphics/entity/mech-armor/mech-descend-light.png", category = "light" },
+  { match = "space-age/graphics/entity/mech-armor/mech-idle-air-light.png", category = "light" },
+  { match = "space-age/graphics/entity/mech-armor/mech-uplift-light.png", category = "light" },
+  { match = "space-age/graphics/entity/plant/stingfrond/stingfrond-harvest-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-beam.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-E-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-E-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-N-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-N-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-NE-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-NE-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-NW-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-NW-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-S-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-S-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-SE-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-SE-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-SW-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-SW-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-W-EMIT.png", category = "light" },
+  { match = "space-age/graphics/entity/railgun-turret/railgun-turret-shooting-W-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/rocket-turret/rocket-turret-rising-glow.png", category = "light" },
+  { match = "space-age/graphics/entity/rocket-turret/rocket-turret-shooting-glow-1.png", category = "light" },
+  { match = "space-age/graphics/entity/rocket-turret/rocket-turret-shooting-glow-2.png", category = "light" },
+  { match = "space-age/graphics/entity/rocket-turret/rocket-turret-shooting-glow-3.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-LED.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-base-emit.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-head-attacking-emit.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-head-attacking-facelight.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-head-rising-emit.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-sfx-active.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-sfx-idle-1.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-sfx-idle-2.png", category = "light" },
+  { match = "space-age/graphics/entity/tesla-turret/tesla-turret-sfx-passive.png", category = "light" },
+  { match = "space-age/graphics/entity/thruster/thruster-light-1.png", category = "light" },
+  { match = "space-age/graphics/entity/thruster/thruster-light-2.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/fulgora-cloudscape-layered-0-lightning.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/fulgora-cloudscape-layered-1-lightning.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/fulgora-cloudscape-layered-2-lightning.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/fulgora-cloudscape-layered-3-lightning.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/fulgora-cloudscape-lightning.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/nauvis-cloudscape-layered-0.png", category = "light" },
+  { match = "space-age/graphics/procession/clouds/nauvis-cloudscape.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/concrete-lava-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/concrete-transitions-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/foundation-lava-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/foundation-transitions-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/lava-stone-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/refined-concrete-lava-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/refined-concrete-transitions-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/stone-path-lava-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/lava-transitions/stone-path-lava-transitions-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/out-of-map-transition/concrete-lava-shore-out-of-map-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/out-of-map-transition/foundation-lava-shore-out-of-map-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/out-of-map-transition/lava-out-of-map-transition.png", category = "light" },
+  { match = "space-age/graphics/terrain/out-of-map-transition/refined-concrete-lava-shore-out-of-map-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/out-of-map-transition/stone-path-lava-shore-out-of-map-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/east-lights-top.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/east-lights.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/north-lights-top.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/north-lights.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/south-lights-top.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/south-lights.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/west-lights-top.png", category = "light" },
+  { match = "space-age/graphics/terrain/space-platform/tile-animations/west-lights.png", category = "light" },
+  { match = "space-age/graphics/terrain/vulcanus/volcanic-cracks-hot-light.png", category = "light" },
+  { match = "space-age/graphics/terrain/vulcanus/volcanic-cracks-warm-lightmap1.png", category = "light" },
+  { match = "space-age/graphics/terrain/vulcanus/volcanic-folds-warm-lightmap.png", category = "light" },
+  { match = "space-age/graphics/terrain/vulcanus/volcanic-smooth-stone-warm-lightmap.png", category = "light" },
+  # END generated rules
+  { match = "*/graphics/entity/**/*-light*.png",  category = "light" },
+  { match = "*/graphics/entity/**/*-lights*.png", category = "light" },
+  { match = "*/graphics/entity/**/*emission*.png", category = "light" },
+  { match = "*/graphics/entity/**/*-glow.png",    category = "light" },
+  { match = "base/graphics/entity/tree/**/*reflection*.png", category = "foliage" },
+  { match = "base/graphics/entity/{biter,spitter,worm,spawner}/**/*reflection*.png", category = "enemy" },
+  { match = "**/*reflection*.png",               category = "entity" },
+
+  # ===== 4. Terrain ============================================================
+  { match = "base/graphics/terrain/grass-*.png",        category = "terrain.grass" },
+  { match = "base/graphics/terrain/dirt-*.png",         category = "terrain.dirt" },
+  { match = "base/graphics/terrain/dry-dirt.png",       category = "terrain.dirt" },
+  { match = "base/graphics/terrain/sand-*.png",         category = "terrain.sand" },
+  { match = "base/graphics/terrain/red-desert-*.png",   category = "terrain.red_desert" },
+  { match = "base/graphics/terrain/landfill.png",       category = "terrain.landfill" },
+  { match = "base/graphics/terrain/nuclear-ground.png", category = "terrain.nuclear" },
+
+  { match = "base/graphics/terrain/water/**",           category = "terrain.water" },
+  { match = "base/graphics/terrain/water-wube/**",      category = "terrain.water" },
+  { match = "base/graphics/terrain/water-green/**",     category = "terrain.water_green" },
+  { match = "base/graphics/terrain/deepwater/**",       category = "terrain.deepwater" },
+  { match = "base/graphics/terrain/deepwater-green/**", category = "terrain.deepwater_green" },
+  { match = "base/graphics/terrain/water-shallow/**",   category = "terrain.water_shallow" },
+  { match = "base/graphics/terrain/water-mud/**",       category = "terrain.water_mud" },
+
+  # Shorelines and edges: each uses the transform of the tile it belongs to.
+  { match = "base/graphics/terrain/water-transitions/water-patch.png", category = "terrain.water" },
+  { match = "base/graphics/terrain/*-transition*/grass*",        category = "terrain.grass" },
+  { match = "base/graphics/terrain/*-transition*/dark-dirt*",    category = "terrain.dirt" },
+  { match = "base/graphics/terrain/*-transition*/dry-dirt*",     category = "terrain.dirt" },
+  { match = "base/graphics/terrain/*-transition*/dirt*",         category = "terrain.dirt" },
+  { match = "base/graphics/terrain/*-transition*/sand*",         category = "terrain.sand" },
+  { match = "base/graphics/terrain/*-transition*/landfill*",     category = "terrain.landfill" },
+  { match = "base/graphics/terrain/*-transition*/nuclear-ground*", category = "terrain.nuclear" },
+  { match = "base/graphics/terrain/*-transition*/stone-path*",   category = "terrain.stone_path" },
+  { match = "base/graphics/terrain/*-transition*/refined-concrete*", category = "terrain.refined_concrete" },
+  { match = "base/graphics/terrain/*-transition*/concrete*",     category = "terrain.concrete" },
+  { match = "base/graphics/terrain/out-of-map-transition/water-shallow*", category = "terrain.water_shallow" },
+  { match = "base/graphics/terrain/out-of-map-transition/**",    category = "passthrough" },   # edge of the black void
+  { match = "base/graphics/terrain/out-of-map.png",              category = "passthrough" },
+
+  { match = "base/graphics/terrain/stone-path/**",               category = "terrain.stone_path" },
+  { match = "base/graphics/terrain/concrete/refined-*",          category = "terrain.refined_concrete" },
+  { match = "base/graphics/terrain/concrete/**",                 category = "terrain.concrete" },
+  { match = "base/graphics/terrain/hazard-concrete-*/**",        category = "terrain.hazard" },
+  { match = "base/graphics/terrain/cliffs/**",                   category = "rock" },
+  { match = "base/graphics/terrain/lab-tiles/**",                category = "passthrough" },   # map editor only
+  { match = "base/graphics/terrain/tutorial-grid/**",            category = "passthrough" },   # tutorial only
+
+  # ===== 5. Resources ==========================================================
+  { match = "base/graphics/entity/iron-ore/**",               category = "ore.iron" },
+  { match = "base/graphics/particle/iron-ore-particle/**",    category = "ore.iron" },
+  { match = "base/graphics/entity/copper-ore/**",             category = "ore.copper" },
+  { match = "base/graphics/particle/copper-ore-particle/**",  category = "ore.copper" },
+  { match = "base/graphics/entity/coal/**",                   category = "ore.coal" },
+  { match = "base/graphics/particle/coal-particle/**",        category = "ore.coal" },
+  { match = "base/graphics/entity/stone/**",                  category = "ore.stone" },
+  { match = "base/graphics/entity/uranium-ore/**",            category = "ore.uranium" },
+  { match = "base/graphics/entity/crude-oil/**",              category = "ore.oil" },
+
+  # ===== 6. Nature =============================================================
+  { match = "base/graphics/entity/tree/**/*-leaves.png",      category = "foliage" },
+  { match = "base/graphics/entity/tree/**",                   category = "wood" },       # trunk, stump
+  { match = "base/graphics/particle/{leaf,vegetation}-particle/**", category = "foliage" },
+  { match = "base/graphics/particle/{wooden,branch}-particle/**",   category = "wood" },
+  { match = "base/graphics/particle/stone-particle/**",       category = "rock" },
+
+  { match = "base/graphics/decorative/*-mud-decal/**",        category = "terrain.dirt" },
+  { match = "base/graphics/decorative/sand-decal/**",         category = "terrain.sand" },
+  { match = "base/graphics/decorative/sand-dune-decal/**",    category = "terrain.sand" },
+  { match = "base/graphics/decorative/red-desert-decal/**",   category = "terrain.red_desert" },
+  { match = "base/graphics/decorative/nuclear-ground-patch/**", category = "terrain.nuclear" },
+  { match = "base/graphics/decorative/lichen-decal/**",       category = "foliage.dry" },
+  { match = "base/graphics/decorative/shroom-decal/**",       category = "foliage.red" },
+  { match = "base/graphics/decorative/{enemy,worms}-decal/**", category = "enemy" },
+  { match = "base/graphics/decorative/muddy-stump/**",        category = "wood" },
+  { match = "base/graphics/decorative/*rock*/**",             category = "rock" },
+  { match = "base/graphics/decorative/green-*/**",            category = "foliage.ground" },   # grass tufts, small bushes
+  { match = "base/graphics/decorative/garballo/**",           category = "foliage.ground" },
+  { match = "base/graphics/decorative/{brown-*,garballo-mini-dry,white-desert-bush}/**", category = "foliage.dry" },
+  { match = "base/graphics/decorative/red-*/**",              category = "foliage.red" },
+
+  # ===== 7. Enemies (pastel too) ===============================================
+  { match = "base/graphics/entity/{biter,spitter,worm,spawner}/**", category = "enemy" },
+  { match = "base/graphics/entity/acid-*/**",                 category = "enemy" },
+  { match = "base/graphics/particle/{blood,guts-entrails}-particle/**", category = "enemy" },
+
+  # ===== 8. Effects: fire, explosions, lasers. No lift; they're already bright. =
+  { match = "base/graphics/entity/{smoke,smoke-fast,fire-smoke,smoke-construction}/**", category = "passthrough" },   # tinted at runtime
+  { match = "base/graphics/entity/*explosion*/**",            category = "effect" },
+  { match = "base/graphics/entity/{fire-flame,flamethrower-fire-stream,sparks,beam,laser,blue-laser,laser-bubble,artillery-cannon-muzzle-flash,bullet,piercing-bullet}/**", category = "effect" },
+  { match = "base/graphics/particle/{spark,pole-sparks,explosion}-particle/**", category = "effect" },
+
+  # ===== 9. Icons, technology, GUI-side art (every expansion) ==================
+  { match = "*/graphics/icons/{signal,fluid,arrows,shapes,shortcut-toolbar,parameter,ammo-category,tooltips}/**", category = "icon.gui" },
+  { match = "*/graphics/icons/**",                            category = "icon" },
+  { match = "*/graphics/technology/**",                       category = "technology" },
+  { match = "*/graphics/{achievement,equipment,item-group}/**", category = "icon.gui" },
+
+  # ===== 10. Everything else in the world, including the buildings of ==========
+  # Space Age, Quality, Recycler and Elevated Rails
+  { match = "base/graphics/entity/{transport-belt,fast-transport-belt,express-transport-belt}/{,remnants/}*transport-belt*.png", category = "belt" },
+  { match = "space-age/graphics/entity/turbo-transport-belt/{,remnants/}*transport-belt*.png", category = "belt" },
+  { match = "space-age/graphics/entity/captive-spawner/**",   category = "enemy" },    # a captured biter spawner
+
+  # ===== 11. The other planets and space ======================================
+  # Everything else on a planet gets its group's category (see [[groups]]),
+  # and buildings get "entity" from the buildings group.
+  { match = "space-age/graphics/lut/*.png",                    category = "lut" },
+  { match = "space-age/graphics/terrain/vulcanus/lava-textures/*lava.png", category = "vulcanus.lava" },
+  { match = "space-age/graphics/terrain/oil-ocean-deep-shader.png", category = "fulgora.oil" },
+  { match = "space-age/graphics/terrain/aquilo/frozen-*hazard*", category = "terrain.hazard" },
+  { match = "space-age/graphics/entity/{demolisher,lavaslug,wriggler,strafer,stomper,gleba-spawner}/**", category = "enemy" },
+  { match = "space-age/graphics/particle/{demolisher,gleba-blood,pentapod}-particle/**", category = "enemy" },
+  { match = "space-age/graphics/entity/{tungsten-ore,calcite,sulfuric-acid-geyser,scrap,stromatolite,fluorine-vent,lithium-brine,asteroid}/**", category = "planet.resource" },
+  { match = "space-age/graphics/particle/{calcite,tungsten-ore,holmium-ore,asteroid}-particle/**", category = "planet.resource" },
+  { match = "space-age/graphics/entity/asteroid-explosions/**", category = "effect" },
+]
